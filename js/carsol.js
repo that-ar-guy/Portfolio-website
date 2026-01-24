@@ -1,22 +1,13 @@
-<script>
+document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".carousel-track");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
+  if (!track) return;
 
-  let index = 0;
-  const cardWidth = 330; // card width + gap
+  const cards = Array.from(track.children);
 
-  nextBtn.addEventListener("click", () => {
-    if (index < track.children.length - 1) {
-      index++;
-      track.style.transform = `translateX(-${index * cardWidth}px)`;
-    }
+  // Clone all cards once for seamless infinite scroll
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
   });
-
-  prevBtn.addEventListener("click", () => {
-    if (index > 0) {
-      index--;
-      track.style.transform = `translateX(-${index * cardWidth}px)`;
-    }
-  });
-</script>
+});

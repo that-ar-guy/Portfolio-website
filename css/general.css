@@ -240,15 +240,26 @@ nav ul li a svg {
 }
 
 .carousel {
-  position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .carousel-track {
+  outline: 2px solid red;
+
   display: flex;
   gap: 30px;
-  transition: transform 0.4s ease;
+  width: max-content;
+  animation: scroll 15s linear infinite;
+  will-change: transform;
 }
+
+
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+
 
 .project-card {
   min-width: 300px;
@@ -305,7 +316,14 @@ nav ul li a svg {
 .nav.next {
   right: 0;
 }
-
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
 /* till here */
 /*skills section*/
